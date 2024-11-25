@@ -3,6 +3,9 @@ import 'package:flutter_hw13/styles/text_styles.dart';
 import 'package:flutter_hw13/widgets/custom_button.dart';
 import 'package:flutter_hw13/widgets/custom_app_bar.dart';
 import 'package:flutter_hw13/screens/task1.dart';
+import 'package:flutter_hw13/screens/task2.dart';
+import 'package:flutter_hw13/screens/task3.dart';
+import 'package:flutter_hw13/screens/task4.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -34,28 +37,36 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             CustomButton(
               onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (_) => TransactionFormAdd(
-                //       transactionStore: transactionStore,
-                //     ),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const TimerScreen(),
+                  ),
+                );
               },
               text: 'Task 2',
             ),
             const SizedBox(height: 20),
             CustomButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/transactions');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const TimerScreen(),
+                  ),
+                );
               },
               text: 'Task 3',
             ),
             const SizedBox(height: 20),
             CustomButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/analytics');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const TimerScreen(),
+                  ),
+                );
               },
               text: 'Task 4',
             ),

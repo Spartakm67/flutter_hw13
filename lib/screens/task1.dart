@@ -135,7 +135,7 @@ class ChatScreenState extends State<ChatScreen> {
     });
 
     try {
-      String botResponse = await simulateChatResponse(userMessage);
+      String botResponse = await SimulateChatResponse().simulateChatResponse(userMessage);
       setState(() {
         _messages.add('Чат-бот: $botResponse');
       });
