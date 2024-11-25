@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hw13/services/simulate_chat_response.dart';
+import 'package:flutter_hw13/widgets/custom_app_bar.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -44,8 +45,8 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Чат-бот'),
+      appBar: const CustomAppBar(
+        title: 'Чат-бот',
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -73,7 +74,10 @@ class ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.send, color: Colors.blue,),
+                  icon: const Icon(
+                    Icons.send,
+                    color: Colors.blueGrey,
+                  ),
                   onPressed: _sendMessage,
                 ),
               ],
@@ -83,8 +87,13 @@ class ChatScreenState extends State<ChatScreen> {
       ),
       floatingActionButton: _showScrollToTopButton
           ? FloatingActionButton(
+              shape: const CircleBorder(),
+              backgroundColor: Colors.grey,
               onPressed: _scrollToTop,
-              child: const Icon(Icons.arrow_upward),
+              child: const Icon(
+                Icons.arrow_upward,
+                color: Colors.white,
+              ),
             )
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
@@ -104,7 +113,7 @@ class ChatScreenState extends State<ChatScreen> {
     }
 
     setState(() {
-      _messages.add('Я: $userMessage');
+      _messages.add('Я: $userMessage',);
       _controller.clear();
     });
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -116,7 +125,8 @@ class ChatScreenState extends State<ChatScreen> {
     });
 
     try {
-      String botResponse = await SimulateChatResponse().simulateChatResponse(userMessage);
+      String botResponse =
+          await SimulateChatResponse().simulateChatResponse(userMessage);
       setState(() {
         _messages.add('Чат-бот: $botResponse');
       });

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hw13/services/countdown_timer.dart';
+import 'package:flutter_hw13/widgets/custom_app_bar.dart';
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -12,7 +13,6 @@ class TimerScreenState extends State<TimerScreen> {
   late CountdownTimer _countdownTimer;
   late Stream<int> _timerStream;
   bool _isPaused = false;
-
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class TimerScreenState extends State<TimerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Таймер")),
+      appBar: const CustomAppBar(title: 'Таймер'),
       body: Center(
         child: StreamBuilder<int>(
           stream: _timerStream,
@@ -37,16 +37,16 @@ class TimerScreenState extends State<TimerScreen> {
             if (snapshot.hasError) {
               return Text(snapshot.error.toString());
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Text("Очікування запуску таймера...");
+              return const Text('Очікування запуску таймера...');
             } else if (snapshot.connectionState == ConnectionState.done) {
-              return const Text("Таймер завершено!");
+              return const Text('Таймер завершено!');
             } else if (snapshot.hasData) {
               return Text(
-                "Залишилось: ${snapshot.data} секунд",
+                'Залишилось: ${snapshot.data} секунд',
                 style: const TextStyle(fontSize: 24),
               );
             }
-            return const Text("Невідомий стан.");
+            return const Text('Невідомий стан.');
           },
         ),
       ),
@@ -54,20 +54,28 @@ class TimerScreenState extends State<TimerScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            shape: const CircleBorder(),
+            backgroundColor: Colors.grey,
             onPressed: _resetTimer,
-            tooltip: "Перезапустити таймер",
-            child: const Icon(Icons.refresh),
+            tooltip: 'Перезапустити таймер',
+            child: const Icon(Icons.refresh, color: Colors.white,),
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
+            shape: const CircleBorder(),
+            backgroundColor: Colors.blueGrey,
             onPressed: _togglePauseResume,
-            tooltip: _isPaused ? "Продовжити таймер" : "Поставити на паузу",
-            child: Icon(_isPaused ? Icons.play_arrow : Icons.pause),
+            tooltip: _isPaused ? 'Продовжити таймер' : 'Поставити на паузу',
+            child: Icon(
+              _isPaused ? Icons.play_arrow : Icons.pause,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
     );
   }
+
   void _initializeTimer() {
     _countdownTimer = CountdownTimer();
     _timerStream = _countdownTimer.stream;

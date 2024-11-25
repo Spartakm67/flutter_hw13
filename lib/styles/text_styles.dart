@@ -26,7 +26,7 @@ class TextStyles {
   );
 
   static const TextStyle defaultText = TextStyle(
-    fontSize: 20,
+    fontSize: 26,
     color: Colors.blueAccent,
     fontStyle: FontStyle.italic,
   );

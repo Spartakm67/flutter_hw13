@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hw13/services/real_time_data_generator.dart';
+import 'package:flutter_hw13/widgets/custom_app_bar.dart';
+import 'package:flutter_hw13/styles/text_styles.dart';
 
 class RealTimeDataScreen extends StatefulWidget {
   const RealTimeDataScreen({super.key});
@@ -24,12 +26,10 @@ class RealTimeDataScreenState extends State<RealTimeDataScreen> {
     super.dispose();
   }
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Потік даних'),
-      ),
+      appBar: const CustomAppBar(title: 'Потік даних'),
       body: Column(
         children: [
           Expanded(
@@ -40,10 +40,13 @@ class RealTimeDataScreenState extends State<RealTimeDataScreen> {
                   return const Center(child: Text('Очікування даних...'));
                 }
                 if (snapshot.hasError) {
-                  return Center(
-                    child: Text(
-                      'Помилка: ${snapshot.error}',
-                      style: const TextStyle(color: Colors.red, fontSize: 16),
+                  return Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Center(
+                      child: Text(
+                        'Помилка: ${snapshot.error}',
+                        style: TextStyles.greetingsText,
+                      ),
                     ),
                   );
                 }
@@ -51,7 +54,7 @@ class RealTimeDataScreenState extends State<RealTimeDataScreen> {
                   return Center(
                     child: Text(
                       'Дані від користувача: ${snapshot.data}',
-                      style: const TextStyle(fontSize: 24),
+                      style: TextStyles.defaultText,
                     ),
                   );
                 }
@@ -62,9 +65,14 @@ class RealTimeDataScreenState extends State<RealTimeDataScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
+        backgroundColor: Colors.blueGrey,
         onPressed: _toggleStream,
         tooltip: _isStreaming ? 'Зупинити потік' : 'Запустити потік',
-        child: Icon(_isStreaming ? Icons.pause : Icons.play_arrow),
+        child: Icon(
+          _isStreaming ? Icons.pause : Icons.play_arrow,
+          color: Colors.white,
+        ),
       ),
     );
   }

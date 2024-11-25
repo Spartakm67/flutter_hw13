@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hw13/services/api_service.dart';
+import 'package:flutter_hw13/widgets/custom_app_bar.dart';
 
 class ApiScreen extends StatefulWidget {
   const ApiScreen({super.key});
@@ -15,9 +16,7 @@ class ApiScreenState extends State<ApiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Асинхронний API'),
-      ),
+      appBar: const CustomAppBar(title: 'Асинхронний API'),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -25,11 +24,38 @@ class ApiScreenState extends State<ApiScreen> {
             Text(
               _statusMessage,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _isLoading ? null : _startApiCall,
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                      (states) {
+                    if (states.contains(WidgetState.disabled)) {
+                      return Colors.white60;
+                    }
+                    return Colors.blueGrey;
+                  },
+                ),
+                foregroundColor: WidgetStateProperty.resolveWith<Color>(
+                      (states) {
+                    if (states.contains(WidgetState.disabled)) {
+                      return Colors.black12;
+                    }
+                    return Colors.white;
+                  },
+                ),
+                textStyle: WidgetStateProperty.all(
+                  const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                padding: WidgetStateProperty.all(
+                  const EdgeInsets.symmetric(horizontal: 18, vertical: 11),
+                ),
+              ),
               child: const Text('Почати'),
             ),
           ],

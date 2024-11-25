@@ -21,7 +21,7 @@ class CountdownTimer {
           _controller.add(_remainingTime);
           _remainingTime--;
         } else {
-          _controller.addError("Таймер завершено!");
+          _controller.addError('Таймер завершено!');
           timer.cancel();
         }
       },

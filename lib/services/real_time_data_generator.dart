@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 class RealTimeDataGenerator {
-  final StreamController<int> _dataController = StreamController<int>.broadcast();
+  final StreamController<int> _dataController =
+      StreamController<int>.broadcast();
   Timer? _timer;
 
   Stream<int> get dataStream => _dataController.stream;
