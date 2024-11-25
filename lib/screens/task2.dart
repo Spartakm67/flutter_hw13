@@ -77,7 +77,7 @@ class TimerScreenState extends State<TimerScreen> {
           FloatingActionButton(
             onPressed: _togglePauseResume,
             tooltip: _isPaused ? "Продовжити таймер" : "Поставити на паузу",
-            child: Icon(_isPaused ? Icons.play_circle_outline_rounded : Icons.pause),
+            child: Icon(_isPaused ? Icons.play_arrow : Icons.pause),
           ),
         ],
       ),

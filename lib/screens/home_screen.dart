@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const TimerScreen(),
+                    builder: (_) => const RealTimeDataScreen(),
                   ),
                 );
               },
@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const TimerScreen(),
+                    builder: (_) => const RealTimeDataScreen(),
                   ),
                 );
               },
