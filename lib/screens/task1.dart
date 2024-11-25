@@ -1,25 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hw13/services/simulate_chat_response.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Chat Bot Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ChatScreen(),
-    );
-  }
-}
-
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 

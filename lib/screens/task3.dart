@@ -1,21 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hw13/services/real_time_data_generator.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: RealTimeDataScreen(),
-    );
-  }
-}
-
 class RealTimeDataScreen extends StatefulWidget {
   const RealTimeDataScreen({super.key});
 
@@ -39,18 +24,7 @@ class RealTimeDataScreenState extends State<RealTimeDataScreen> {
     super.dispose();
   }
 
-  void _toggleStream() {
-    setState(() {
-      if (_isStreaming) {
-        _dataGenerator.stop();
-      } else {
-        _dataGenerator.start();
-      }
-      _isStreaming = !_isStreaming;
-    });
-  }
-
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -93,5 +67,16 @@ class RealTimeDataScreenState extends State<RealTimeDataScreen> {
         child: Icon(_isStreaming ? Icons.pause : Icons.play_arrow),
       ),
     );
+  }
+
+  void _toggleStream() {
+    setState(() {
+      if (_isStreaming) {
+        _dataGenerator.stop();
+      } else {
+        _dataGenerator.start();
+      }
+      _isStreaming = !_isStreaming;
+    });
   }
 }
